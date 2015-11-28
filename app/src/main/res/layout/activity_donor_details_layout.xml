@@ -1,0 +1,196 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.dhenupa.activity.ActivityDonerDetailsLayout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher"
+            android:scaleType="center"/>
+
+        <TextView
+            android:id="@+id/nameid"
+            android:layout_below="@id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name : "
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/namedate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/nameid"
+            android:layout_below="@id/image"
+            android:text="Durlabha"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameid"
+            android:text="Address : "
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/addrdata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/adress"
+            android:layout_below="@+id/namedate"
+            android:text="S B Nagar"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/adress"
+            android:id="@+id/area"
+            android:text="Area : "
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/areadata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chikkalasndra"
+            android:layout_below="@id/addrdata"
+            android:layout_toRightOf="@id/area"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City : "
+            android:layout_below="@id/area"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/citydata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bangalore"
+            android:layout_below="@id/area"
+            android:layout_toRightOf="@id/city"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact No : "
+            android:layout_below="@id/city"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/phnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9738762971"
+            android:layout_below="@+id/citydata"
+            android:layout_toRightOf="@id/contact"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/celeb_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Celeb Date : "
+            android:layout_below="@id/contact"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/celb_dt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="05-11-2015"
+            android:layout_below="@+id/phnum"
+            android:layout_toRightOf="@id/celeb_date"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount : "
+            android:layout_below="@id/celeb_date"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/rupees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:layout_below="@id/celb_dt"
+            android:layout_toRightOf="@id/amount"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/nakshatraRashi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nakshatra Rashi : "
+            android:layout_below="@id/amount"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/nakshgo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uttara, Kanya"
+            android:layout_below="@id/rupees"
+            android:layout_toRightOf="@id/nakshatraRashi"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/gotra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gotra : "
+            android:layout_below="@id/nakshatraRashi"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/gotradata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atri"
+            android:layout_below="@id/nakshgo"
+            android:layout_toRightOf="@id/gotra"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+

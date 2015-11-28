@@ -1,0 +1,63 @@
+#
+# generated on 2015/10/24 04:51:36
+#
+# --table-start--
+dataClass=com.dhenupa.model.DonorList
+tableName=donorlist
+# --table-fields-start--
+# --field-start--
+fieldName=_Id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=userid
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=address
+# --field-end--
+# --field-start--
+fieldName=area
+# --field-end--
+# --field-start--
+fieldName=city
+# --field-end--
+# --field-start--
+fieldName=contactNumber
+# --field-end--
+# --field-start--
+fieldName=donationType
+# --field-end--
+# --field-start--
+fieldName=amount
+# --field-end--
+# --field-start--
+fieldName=emailId
+# --field-end--
+# --field-start--
+fieldName=rashi
+# --field-end--
+# --field-start--
+fieldName=nakshatra
+# --field-end--
+# --field-start--
+fieldName=gothra
+# --field-end--
+# --field-start--
+fieldName=job
+# --field-end--
+# --field-start--
+fieldName=registeredDate
+# --field-end--
+# --field-start--
+fieldName=dob
+# --field-end--
+# --field-start--
+fieldName=imagePath
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dhenupa</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_add">Add</string>
+    <string name="action_send">Send</string>
+    <string name="updated_payment_History">Updated Payment</string>
+    <string name="get_payment">Get Payment</string>
+
+</resources>
