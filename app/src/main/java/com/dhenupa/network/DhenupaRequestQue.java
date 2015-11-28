@@ -13,6 +13,9 @@ import com.android.volley.toolbox.Volley;
  * Created by prsn0001 on 10/18/2015.
  */
 public class DhenupaRequestQue {
+
+    public static final String SERVER_URL = "http://192.168.0.102:8080/DhenupaAdmin";
+    //public static final String SERVER_URL = "http://admin-dhenupa.rhcloud.com";
     private RequestQueue mRequestQueue;
 
     private ImageLoader mImageLoader;

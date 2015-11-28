@@ -8,5 +8,6 @@
     <string name="title_activity_main">Dhenupa</string>
     <string name="title_activity_donr_list_details">Donors</string>
     <string name="title_activity_donor_details_layout">Donor Details</string>
+    <string name="title_activity_donor_list">DonorListActivity</string>
 
 </resources>

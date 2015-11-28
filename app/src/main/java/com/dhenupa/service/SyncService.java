@@ -3,6 +3,31 @@ package com.dhenupa.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.dhenupa.activity.ActivityDonerDetailsLayout;
+import com.dhenupa.activity.DonorListActivity;
+import com.dhenupa.adapter.CustomListAdapter;
+import com.dhenupa.model.DonorList;
+import com.dhenupa.model.db.DatabaseHelper;
+import com.dhenupa.network.DhenupaRequestQue;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -12,43 +37,17 @@ import android.content.Context;
  * helper methods.
  */
 public class SyncService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "com.dhenupa.service.action.FOO";
-    private static final String ACTION_BAZ = "com.dhenupa.service.action.BAZ";
 
-    // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "com.dhenupa.service.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "com.dhenupa.service.extra.PARAM2";
+    DatabaseHelper db;
+    Cursor cursor;
 
-    /**
-     * Starts this service to perform action Foo with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, SyncService.class);
-        intent.setAction(ACTION_FOO);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
+    private static final String LOG_TAG = "SyncService";
 
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, SyncService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        db = new DatabaseHelper(this);
+
     }
 
     public SyncService() {
@@ -57,35 +56,44 @@ public class SyncService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (intent != null) {
-            final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+        syncList();
+    }
+
+    private void syncList(){
+        String url = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=list";
+        //String url = DhenupaRequestQue.SERVER_URL + "/DhenupaAdmin/MobileDhenupaServlet?action=list";
+        //String url = "http://169.254.49.105:8080/DhenupaAdmin/MobileDhenupaServlet?action=list";
+        //String url = "http://192.168.1.10:8080/DhenupaAdmin/MobileDhenupaServlet?";
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //Toast.makeText(MainActivity.this, (String) response.get("result"), Toast.LENGTH_LONG).show();
+                    DonorList[] list = new Gson().fromJson(String.valueOf(response.getJSONArray("list")), DonorList[].class);
+                    //db.getDonorListDao().deleteBuilder().delete();
+                    for (int i = 0; i < list.length; i++) {
+                        ArrayList<DonorList> donorList = (ArrayList<DonorList>) db.getDonorListDao().queryForEq("userid", list[i].getUserid());
+                        if(donorList !=null && donorList.size()>0)
+                            db.getDonorListDao().update(list[i]);
+                        else
+                            db.getDonorListDao().create(list[i]);
+                    }
+                    Log.d(LOG_TAG, "" + list.length);
+                    VolleyLog.v("Response:%n %s", response.toString(4));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(DonorListActivity.ACTION_SYNC_COMPLETED);
+                sendBroadcast(intent);
             }
-        }
-    }
-
-    /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionFoo(String param1, String param2) {
-        // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("VollyError", error.toString());
+            }
+        });
+        // Add the request to the RequestQueue.
+        DhenupaRequestQue.getInstance(this).getRequestQueue().add(req);
     }
 }

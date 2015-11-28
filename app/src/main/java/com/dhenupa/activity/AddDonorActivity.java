@@ -69,7 +69,7 @@ public class AddDonorActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_add_donor);
 		cityEditText = (AutoCompleteTextView) findViewById(R.id.cities);
 		// Get the string array
 		String[] countries = getResources().getStringArray(R.array.cities);

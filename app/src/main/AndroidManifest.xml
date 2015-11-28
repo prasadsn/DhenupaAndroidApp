@@ -46,6 +46,11 @@
             android:name="com.dhenupa.service.SyncService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".DonorListActivity"
+            android:label="@string/title_activity_donor_list" >
+        </activity>
     </application>
 
 </manifest>
