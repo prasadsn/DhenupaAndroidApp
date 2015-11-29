@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.dhenupa.activity.R;
 import com.dhenupa.network.DhenupaRequestQue;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -80,8 +85,20 @@ public class CustomListAdapter extends CursorAdapter {
         holder.name.setText(cursor.getString(cursor.getColumnIndex("name")));
         holder.number.setText(cursor.getString(cursor.getColumnIndex("address")));
         holder.email.setText(cursor.getString(cursor.getColumnIndex("dob")));
+
         String userId = cursor.getString(cursor.getColumnIndex("userid"));
         holder.userId = userId;
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "Dhenupa");
+        if(!file.exists())
+            file.mkdir();
+        final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
+                + File.separator + userId + "_" + cursor.getString(cursor.getColumnIndex("name")) + ".jpg";
+        Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
+        if(bitmap!=null){
+            holder.image.setImageBitmap(bitmap);
+            return;
+        }
+
         String imgUrl = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=getPic&userid="+ userId;
         //holder.image.setImageUrl(imgUrl, DhenupaRequestQue.getInstance(mContext).getImageLoader());
         //holder.image.setImageBitmap(getBitmapFromURL(imgUrl));
@@ -95,6 +112,8 @@ public class CustomListAdapter extends CursorAdapter {
                 //decodedString = response.getBytes();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 holder.image.setImageBitmap(bitmap);
+                if(bitmap != null)
+                    savePic(bitmap, imgFileName);
             }
         }, new Response.ErrorListener(){
             @Override
@@ -103,5 +122,24 @@ public class CustomListAdapter extends CursorAdapter {
             }
         });
         DhenupaRequestQue.getInstance(context).getRequestQueue().add(request);
+    }
+
+    private void savePic(Bitmap _bitmapScaled, String filename){
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            _bitmapScaled.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+
+            //you can create a new file name "test.jpg" in sdcard folder.
+            File f = new File(filename);
+                f.createNewFile();
+            //write the bytes in file
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+
+            // remember close de FileOutput
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

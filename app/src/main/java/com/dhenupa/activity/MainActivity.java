@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.dhenupa.util.SMSUtil;
+
 public class MainActivity extends Activity implements View.OnClickListener{
 
     private static final String LOG_TAG = "MainActivity";
@@ -57,6 +59,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 startActivity(intent1);
                 break;
             case R.id.filter:
+                SMSUtil.sendSMS("9901588277", "Greetings!" +
+                        "\n" +
+                        "Please make monthly payment for Dhenupa organization for the purpose of Go SamrakshaNa" +
+                        "\n" +
+                        "Regards" +
+                        "Sreekarachar korlahalli");
                 break;
         }
     }
