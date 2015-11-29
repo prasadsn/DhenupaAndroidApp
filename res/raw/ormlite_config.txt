@@ -2,7 +2,7 @@
 # generated on 2015/10/24 04:51:36
 #
 # --table-start--
-dataClass=com.dhenupa.model.DonorList
+dataClass=com.dhenupa.model.Donor
 tableName=donorlist
 # --table-fields-start--
 # --field-start--

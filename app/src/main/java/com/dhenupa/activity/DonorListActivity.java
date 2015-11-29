@@ -63,7 +63,7 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     }
     private Cursor getCursor(){
         SQLiteDatabase database = db.getReadableDatabase();
-        String SqlQuery = "SELECT * FROM DonorList";
+        String SqlQuery = "SELECT * FROM Donor";
         Cursor cursor = database.rawQuery(SqlQuery, null);
         Log.d("Size", cursor.getCount()+ "");
         return cursor;
