@@ -29,9 +29,12 @@ dependencies {
     compile files('C:/Users/prasad/Desktop/DhenupaAndroidApp - Copy/libs/ormlite-android-4.48.jar')
     compile files('C:/Users/prasad/Desktop/DhenupaAndroidApp - Copy/libs/ormlite-core-4.48.jar')
     /* compile files('F:/Android/DhenupaAndroidApp - Copy/libs/bolts-android-1.2.0.jar')
-                compile files('F:/Android/DhenupaAndroidApp - Copy/libs/ormlite-android-4.48.jar')
-                compile files('F:/Android/DhenupaAndroidApp - Copy/libs/ormlite-core-4.48.jar')*/
+                    compile files('F:/Android/DhenupaAndroidApp - Copy/libs/ormlite-android-4.48.jar')
+                    compile files('F:/Android/DhenupaAndroidApp - Copy/libs/ormlite-core-4.48.jar')*/
     compile files('C:/Users/Kousalya K G/Desktop/DhenupaAndroidApp/libs/ormlite-android-4.48.jar')
     compile files('C:/Users/Kousalya K G/Desktop/DhenupaAndroidApp/libs/ormlite-core-4.48.jar')
     compile files('C:/Users/Kousalya K G/Desktop/DhenupaAndroidApp/libs/bolts-android-1.2.0.jar')
+    compile files('C:/Android studio workspace/DhenupaAndroidApp/DhenupaAndroidApp/libs/bolts-android-1.2.0.jar')
+    compile files('C:/Android studio workspace/DhenupaAndroidApp/DhenupaAndroidApp/libs/ormlite-android-4.48.jar')
+    compile files('C:/Android studio workspace/DhenupaAndroidApp/DhenupaAndroidApp/libs/ormlite-core-4.48.jar')
 }
