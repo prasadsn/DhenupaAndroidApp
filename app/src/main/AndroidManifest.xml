@@ -51,6 +51,17 @@
             android:name=".DonorListActivity"
             android:label="@string/title_activity_donor_list" >
         </activity>
+
+        <receiver android:name="com.dhenupa.network.NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.dhenupa.service.PaymentReminderService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
