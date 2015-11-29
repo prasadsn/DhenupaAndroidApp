@@ -2,23 +2,16 @@ package com.dhenupa.service;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.dhenupa.activity.ActivityDonerDetailsLayout;
 import com.dhenupa.activity.DonorListActivity;
-import com.dhenupa.adapter.CustomListAdapter;
-import com.dhenupa.model.DonorList;
+import com.dhenupa.model.Donor;
 import com.dhenupa.model.db.DatabaseHelper;
 import com.dhenupa.network.DhenupaRequestQue;
 import com.google.gson.Gson;
@@ -26,7 +19,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -70,11 +62,11 @@ public class SyncService extends IntentService {
             public void onResponse(JSONObject response) {
                 try {
                     //Toast.makeText(MainActivity.this, (String) response.get("result"), Toast.LENGTH_LONG).show();
-                    DonorList[] list = new Gson().fromJson(String.valueOf(response.getJSONArray("list")), DonorList[].class);
+                    Donor[] list = new Gson().fromJson(String.valueOf(response.getJSONArray("list")), Donor[].class);
                     //db.getDonorListDao().deleteBuilder().delete();
                     for (int i = 0; i < list.length; i++) {
-                        ArrayList<DonorList> donorList = (ArrayList<DonorList>) db.getDonorListDao().queryForEq("userid", list[i].getUserid());
-                        if(donorList !=null && donorList.size()>0)
+                        ArrayList<Donor> donor = (ArrayList<Donor>) db.getDonorListDao().queryForEq("userid", list[i].getUserid());
+                        if(donor !=null && donor.size()>0)
                             db.getDonorListDao().update(list[i]);
                         else
                             db.getDonorListDao().create(list[i]);

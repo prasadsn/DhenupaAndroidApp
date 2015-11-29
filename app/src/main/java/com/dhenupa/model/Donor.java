@@ -10,7 +10,7 @@ import com.j256.ormlite.field.DatabaseField;
 /**
  * Created by prasad on 13-09-2015.
  */
-public class DonorList implements Parcelable {
+public class Donor implements Parcelable {
 
     @DatabaseField(generatedId = true, columnName = "_id")
     public int _Id;
@@ -89,25 +89,25 @@ public class DonorList implements Parcelable {
         return 0;
     }
 
-    public DonorList(){
+    public Donor(){
     }
 
-    public DonorList(DonorList list){
-        userid = list.getUserid();
-        name = list.getName();
-        address = list.getAddress();
-        city = list.getCity();
-        contactNumber = list.getContactNumber();
-        donationType = list.getDonationType();
-        amount = list.getAmount();
-        emailId = list.getEmailId();
-        rashi = list.getRashi();
-        nakshatra = list.getNakshatra();
-        gothra = list.getGothra();
-        job = list.getJob();
-        registeredDate = list.getRegisteredDate();
-        dob = list.getDob();
-        imagePath = list.getImagePath();
+    public Donor(Donor donor){
+        userid = donor.getUserid();
+        name = donor.getName();
+        address = donor.getAddress();
+        city = donor.getCity();
+        contactNumber = donor.getContactNumber();
+        donationType = donor.getDonationType();
+        amount = donor.getAmount();
+        emailId = donor.getEmailId();
+        rashi = donor.getRashi();
+        nakshatra = donor.getNakshatra();
+        gothra = donor.getGothra();
+        job = donor.getJob();
+        registeredDate = donor.getRegisteredDate();
+        dob = donor.getDob();
+        imagePath = donor.getImagePath();
 
     }
 
@@ -265,18 +265,18 @@ public class DonorList implements Parcelable {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-    public static final Creator<DonorList> CREATOR = new Creator<DonorList>() {
-        /*public DonorList createFromParcel(Parcel source) {
-            return new DonorList(source);
+    public static final Creator<Donor> CREATOR = new Creator<Donor>() {
+        /*public Donor createFromParcel(Parcel source) {
+            return new Donor(source);
         }*/
 
         @Override
-        public DonorList createFromParcel(Parcel source) {
+        public Donor createFromParcel(Parcel source) {
             return null;
         }
 
-        public DonorList[] newArray(int size) {
-            return new DonorList[size];
+        public Donor[] newArray(int size) {
+            return new Donor[size];
         }
     };
 

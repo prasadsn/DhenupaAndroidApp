@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.dhenupa.activity.R;
-import com.dhenupa.model.DonorList;
+import com.dhenupa.model.Donor;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
@@ -24,9 +24,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // the DAO object we use to access the StockList table
-    private Dao<DonorList, Integer> donorListDao = null;
+    private Dao<Donor, Integer> donorListDao = null;
 
-    private RuntimeExceptionDao<DonorList, Integer> donorListRuntimeDao = null;
+    private RuntimeExceptionDao<Donor, Integer> donorListRuntimeDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
@@ -40,7 +40,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTable(connectionSource, DonorList.class);
+            TableUtils.createTable(connectionSource, Donor.class);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -59,9 +59,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * Returns the Database Access Object (DAO) for our StockList class. It will create it or just give the cached
      * value.
      */
-    public Dao<DonorList, Integer> getDao() throws SQLException {
+    public Dao<Donor, Integer> getDao() throws SQLException {
         if (donorListDao == null) {
-            donorListDao = getDao(DonorList.class);
+            donorListDao = getDao(Donor.class);
         }
         return donorListDao;
     }
@@ -70,9 +70,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our StockList class. It will
      * create it or just give the cached value. RuntimeExceptionDao only through RuntimeExceptions.
      */
-    public RuntimeExceptionDao<DonorList, Integer> getDonorListDao() {
+    public RuntimeExceptionDao<Donor, Integer> getDonorListDao() {
         if (donorListRuntimeDao == null) {
-            donorListRuntimeDao = getRuntimeExceptionDao(DonorList.class);
+            donorListRuntimeDao = getRuntimeExceptionDao(Donor.class);
         }
         return donorListRuntimeDao;
     }

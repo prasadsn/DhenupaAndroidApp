@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dhenupa.model.DonorList;
+import com.dhenupa.model.Donor;
 import com.dhenupa.model.db.DatabaseHelper;
 
 import java.io.File;
@@ -28,8 +28,8 @@ public class ActivityDonerDetailsLayout extends Activity {
         setContentView(R.layout.activity_donor_details_layout);
         db = new DatabaseHelper(this);
         String userid = getIntent().getStringExtra("userid");
-        ArrayList<DonorList> list = (ArrayList<DonorList>) db.getDonorListDao().queryForEq("userid", userid);
-        DonorList donor = list.get(0);
+        ArrayList<Donor> list = (ArrayList<Donor>) db.getDonorListDao().queryForEq("userid", userid);
+        Donor donor = list.get(0);
 
         name = (TextView) findViewById(R.id.namedate);
         address = (TextView) findViewById(R.id.addrdata);
