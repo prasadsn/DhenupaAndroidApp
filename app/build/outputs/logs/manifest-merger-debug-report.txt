@@ -1,0 +1,171 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:2:1-97:12
+	xmlns:android
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:2:11-69
+	package
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:3:5-35
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:5:5-30
+	android:versionCode
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:20:5-43
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\library-aar\1.0.0\AndroidManifest.xml:3:5-72
+	android:targetSdkVersion
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:9:9-38
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:8:9-35
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml
+uses-feature#android.hardware.camera
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:11:5-60
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:11:19-57
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:13:5-67
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:13:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:14:22-78
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:15:5-75
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:15:22-72
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:16:22-77
+uses-permission#android.permission.SEND_SMS
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:17:5-67
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:17:22-64
+application
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:19:5-95:19
+MERGED from [com.android.support:support-v4:22.2.1] C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
+MERGED from [com.mcxiaoke.volley:library-aar:1.0.0] C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\library-aar\1.0.0\AndroidManifest.xml:5:5-19
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:23:9-41
+	android:allowBackup
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:21:9-35
+	android:icon
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:22:9-45
+	android:theme
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:24:9-40
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:20:9-66
+activity#com.dhenupa.activity.MainActivity
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:25:9-33:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:27:13-56
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:26:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:28:13-32:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:29:17-69
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:29:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:31:17-77
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:31:27-74
+activity#com.dhenupa.activity.AddDonorActivity
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:34:9-37:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:36:13-45
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:35:13-45
+activity#com.dhenupa.activity.dummy.DonrListDetails
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:38:9-41:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:40:13-69
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:39:13-50
+activity#com.dhenupa.activity.ActivityDonerDetailsLayout
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:42:9-45:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:44:13-72
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:43:13-55
+service#com.dhenupa.service.SyncService
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:47:9-50:19
+	android:exported
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:49:13-37
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:48:13-59
+activity#com.dhenupa.activity.DonorListActivity
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:52:9-55:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:54:13-62
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:53:13-46
+receiver#com.dhenupa.network.NetworkChangeReceiver
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:57:9-61:20
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:57:19-75
+intent-filter#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:58:13-60:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:59:17-79
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:59:25-76
+service#com.dhenupa.service.PaymentReminderService
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:63:9-66:19
+	android:exported
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:65:13-37
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:64:13-70
+receiver#com.dhenupa.scheduler.SampleAlarmReceiver
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:68:9-78
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:68:19-75
+receiver#com.dhenupa.scheduler.SampleBootReceiver
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:69:9-75:20
+	android:enabled
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:71:13-36
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:70:13-68
+intent-filter#android.intent.action.BOOT_COMPLETED
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:72:13-74:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:73:17-79
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:73:25-76
+service#com.dhenupa.scheduler.SampleSchedulingService
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:77:9-81
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:77:18-78
+service#com.dhenupa.service.OfflineDBSyncService
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:78:9-81:19
+	android:exported
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:80:13-37
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:79:13-68
+activity#com.dhenupa.activity.UpdatePaymentHistoryActivity
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:83:9-86:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:85:13-74
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:84:13-57
+activity#com.dhenupa.activity.GetPaymentActivity
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:87:9-90:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:89:13-63
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:88:13-47
+activity#com.dhenupa.activity.ReminderActivity
+ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:91:9-94:20
+	android:label
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:93:13-60
+	android:name
+		ADDED from C:\Users\Kousalya K G\Dhenupa_new\DhenupaAndroidApp\app\src\main\AndroidManifest.xml:92:13-45

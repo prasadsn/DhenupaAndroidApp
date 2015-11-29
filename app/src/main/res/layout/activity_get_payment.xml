@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.dhenupa.activity.GetPaymentActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/dateselect"
+         android:text="Date"
+         android:textSize="20sp"
+         android:textStyle="bold"/>
+    <DatePicker
+        android:id="@+id/registered_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/email"
+        android:layout_toRightOf="@+id/reg_date_label"
+        android:calendarViewShown="false"
+        android:ems="10"
+        android:inputType="date" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Payment Mode"
+           android:textStyle="bold"
+           android:textSize="20sp"
+           android:padding="10dp"/>
+       <RadioGroup
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/radiogrp"
+           android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash"
+            android:id="@+id/cashmode"/>
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Cheque"
+               android:id="@+id/Cheque"/>
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Online Transfer"
+               android:id="@+id/onlinetf"/>
+       </RadioGroup>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Amount"
+          android:textSize="20sp"
+          android:textStyle="bold"
+          android:padding="10dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/amountrs"
+            android:hint="Enter amount"
+            android:padding="20dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/paymentsubmit"
+            android:text="Submit"
+            android:padding="10dp"
+            android:paddingRight="100dp"/>
+
+    </LinearLayout>
+</ScrollView>
+</RelativeLayout>

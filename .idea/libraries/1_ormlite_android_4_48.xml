@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="1_ormlite-android-4.48">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Android Studio Workspace/DhenupaAndroidApp/libs/ormlite-android-4.48.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../prasad/Desktop/DhenupaAndroidApp - Copy/libs/ormlite-android-4.48.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

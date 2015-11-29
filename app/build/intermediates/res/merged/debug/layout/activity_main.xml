@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Show List"
+        android:layout_weight="1"
+        android:id="@+id/show_list"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Add New"
+        android:layout_weight="1"
+        android:id="@+id/add_new"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Filter"
+        android:layout_weight="1"
+        android:id="@+id/filter"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Celeberations for this month"
+        android:layout_weight="1"
+        android:id="@+id/celeberations"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout><!-- From: file:/C:/Users/Kousalya%20K%20G/Dhenupa_new/DhenupaAndroidApp/app/src/main/res/layout/activity_main.xml -->
