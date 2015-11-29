@@ -1,20 +1,26 @@
 package com.dhenupa.activity;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dhenupa.model.DonorList;
 import com.dhenupa.model.db.DatabaseHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
 public class ActivityDonerDetailsLayout extends Activity {
     DatabaseHelper db;
     TextView name, address, area, city, contact_no, celeb_dt, amount, nandr, gotra;
+    ImageView pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,14 @@ public class ActivityDonerDetailsLayout extends Activity {
         amount = (TextView) findViewById(R.id.rupees);
         nandr = (TextView) findViewById(R.id.nakshgo);
         gotra = (TextView) findViewById(R.id.gotradata);
+        pic = (ImageView) findViewById(R.id.image);
+
+        final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
+                + File.separator + donor.getUserid() + "_" + donor.getName() + ".jpg";
+        Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
+        if(bitmap!=null){
+            pic.setImageBitmap(bitmap);
+        }
 
         name.setText(donor.getName());
         address.setText(donor.getAddress());
