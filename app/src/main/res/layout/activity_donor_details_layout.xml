@@ -5,10 +5,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.dhenupa.activity.ActivityDonerDetailsLayout">
-
-    <RelativeLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
         <ImageView
             android:id="@+id/image"
@@ -39,6 +42,11 @@
             android:text="Durlabha"
             android:textSize="20sp"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/adress"
             android:layout_width="wrap_content"
@@ -56,7 +64,11 @@
             android:layout_below="@+id/namedate"
             android:text="S B Nagar"
             android:textSize="20sp"/>
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +87,11 @@
             android:layout_toRightOf="@id/area"
             android:textSize="20sp"
             />
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/city"
             android:layout_width="wrap_content"
@@ -95,7 +111,11 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
 
-
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/contact"
             android:layout_width="wrap_content"
@@ -113,9 +133,13 @@
             android:layout_below="@+id/citydata"
             android:layout_toRightOf="@id/contact"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="normal"/>
+        </LinearLayout>
 
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/celeb_date"
             android:layout_width="wrap_content"
@@ -133,9 +157,13 @@
             android:layout_below="@+id/phnum"
             android:layout_toRightOf="@id/celeb_date"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="normal"/>
+        </LinearLayout>
 
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/amount"
             android:layout_width="wrap_content"
@@ -153,8 +181,12 @@
             android:layout_below="@id/celb_dt"
             android:layout_toRightOf="@id/amount"
             android:textSize="20sp"
-            android:textStyle="bold"/>
-
+            android:textStyle="normal"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/nakshatraRashi"
             android:layout_width="wrap_content"
@@ -172,9 +204,13 @@
             android:layout_below="@id/rupees"
             android:layout_toRightOf="@id/nakshatraRashi"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="normal"/>
 
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/gotra"
             android:layout_width="wrap_content"
@@ -192,8 +228,9 @@
             android:layout_below="@id/nakshgo"
             android:layout_toRightOf="@id/gotra"
             android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        </RelativeLayout>
+            android:textStyle="normal"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
     </RelativeLayout>
 

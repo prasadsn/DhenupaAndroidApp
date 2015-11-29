@@ -79,6 +79,19 @@
             android:name="com.dhenupa.service.OfflineDBSyncService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".UpdatePaymentHistoryActivity"
+            android:label="@string/title_activity_update_payment_history" >
+        </activity>
+        <activity
+            android:name=".GetPaymentActivity"
+            android:label="@string/title_activity_get_payment" >
+        </activity>
+        <activity
+            android:name=".ReminderActivity"
+            android:label="@string/title_activity_reminder" >
+        </activity>
     </application>
 
 </manifest>

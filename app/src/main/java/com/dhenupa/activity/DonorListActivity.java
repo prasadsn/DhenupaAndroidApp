@@ -8,12 +8,16 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.dhenupa.adapter.CustomListAdapter;
@@ -26,7 +30,8 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     private DatabaseHelper db;
     private ListView listView;
     private CustomListAdapter adapter;
-
+    private EditText search;
+    String query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +40,31 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
         setContentView(R.layout.activity_donr_list_details);
         initSync();
         listView = (ListView) findViewById(R.id.listtest);
+        search = (EditText) findViewById(R.id.search);
+
         adapter = new CustomListAdapter(this, getCursor(), true);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //DonorListActivity.this.adapter.getFilter().filter(s);
+                adapter = new CustomListAdapter(DonorListActivity.this, getCursorforSearch(s.toString()),true);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -65,7 +92,15 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
         SQLiteDatabase database = db.getReadableDatabase();
         String SqlQuery = "SELECT * FROM Donor";
         Cursor cursor = database.rawQuery(SqlQuery, null);
-        Log.d("Size", cursor.getCount()+ "");
+        Log.d("Size", cursor.getCount() + "");
+        return cursor;
+    }
+
+    private Cursor getCursorforSearch(String s){
+        SQLiteDatabase database = db.getReadableDatabase();
+        String SqlQuery = "SELECT * FROM Donor where name LIKE '" + s +"%';";
+        Cursor cursor = database.rawQuery(SqlQuery, null);
+        Log.d("Size", cursor.getCount() + "");
         return cursor;
     }
 
@@ -95,4 +130,5 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
             adapter.notifyDataSetChanged();
         }
     }
+
 }

@@ -1,6 +1,7 @@
 package com.dhenupa.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -81,6 +82,23 @@ public class ActivityDonerDetailsLayout extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id == R.id.action_edit){
+
+        }
+        if(id == R.id.updated_payment){
+            Intent intent = new Intent(ActivityDonerDetailsLayout.this, UpdatePaymentHistoryActivity.class);
+            startActivity(intent);
+        }
+        if(id == R.id.getpament){
+            Intent intent = new Intent(ActivityDonerDetailsLayout.this, GetPaymentActivity.class);
+            startActivity(intent);
+        }
+        if(id == R.id.reminder){
+            Intent intent = new Intent(ActivityDonerDetailsLayout.this, ReminderActivity.class);
+            startActivity(intent);
+        }
+
+
 
         return super.onOptionsItemSelected(item);
     }

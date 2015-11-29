@@ -214,6 +214,21 @@
             android:text="Job" />
 
         <EditText
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/address"
+            android:layout_below="@+id/job_label"
+            android:ems="10" />
+        <TextView
+            android:id="@+id/comment_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/comment"
+            android:layout_alignLeft="@id/address_label"
+            android:text="Comment" />
+
+        <EditText
             android:id="@+id/contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -261,6 +276,7 @@
             android:layout_alignLeft="@+id/email_label"
             android:layout_alignTop="@+id/registered_Date"
             android:text="Reg Date" />
+
 
     </RelativeLayout>
 

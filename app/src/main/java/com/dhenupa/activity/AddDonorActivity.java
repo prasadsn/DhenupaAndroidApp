@@ -55,8 +55,9 @@ public class AddDonorActivity extends Activity {
 	private static final String COL_NAKSHATRA = "nakshatra";
 	private static final String COL_GOTHRA = "gotra";
 	private static final String COL_JOB = "job";
+	private static final String COL_COMMENT = "comment";
 
-	private EditText nameEditText, addrEditText, areaEditText, contactEditText, emailEditText, amountEditText, gotraEditText, jobEditText;
+	private EditText nameEditText, addrEditText, areaEditText, contactEditText, emailEditText, amountEditText, gotraEditText, jobEditText, commentText;
 
 	private Spinner donationTypeSpinner, nakshatraSpinner, rashiSpinner;
 
@@ -85,6 +86,7 @@ public class AddDonorActivity extends Activity {
 		amountEditText = (EditText) findViewById(R.id.amount);
 		gotraEditText = (EditText) findViewById(R.id.gotra);
 		jobEditText = (EditText) findViewById(R.id.job);
+		commentText = (EditText) findViewById(R.id.comment);
 
 		donationTypeSpinner = (Spinner) findViewById(R.id.amount_type);
 		nakshatraSpinner = (Spinner) findViewById(R.id.nakshatra);
@@ -138,6 +140,8 @@ public class AddDonorActivity extends Activity {
 		params.put(COL_RASHI, rashiSpinner.getSelectedItem().toString());
 		params.put(COL_GOTHRA, gotraEditText.getText().toString());
 		params.put(COL_JOB, jobEditText.getText().toString());
+		params.put(COL_COMMENT, commentText.getText().toString());
+
 		if (bitmapdata != null)
 			params.put(COL_PHOTO, bitmapdata);
 

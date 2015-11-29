@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
+
+import java.sql.Date;
 //import com.j256.ormlite.field.DatabaseField;
 
 /**
@@ -79,7 +81,13 @@ public class Donor implements Parcelable {
     @SerializedName("imagePath")
     private String imagePath;
 
+    @DatabaseField
+    @SerializedName("comment")
+    private String comment;
 
+    @DatabaseField
+    @SerializedName("last_modified")
+    private Date last_modified;
 
   /*  public String getScriptName(){
         return ScriptName;
@@ -108,7 +116,8 @@ public class Donor implements Parcelable {
         registeredDate = donor.getRegisteredDate();
         dob = donor.getDob();
         imagePath = donor.getImagePath();
-
+        comment = donor.getComment();
+        last_modified = donor.getLast_modified();
     }
 
     @Override
@@ -132,7 +141,8 @@ public class Donor implements Parcelable {
 
         dest.writeString(dob);
         dest.writeString(imagePath);
-
+        dest.writeString(comment);
+        dest.writeString(String.valueOf(last_modified));
 
 
 
@@ -262,8 +272,23 @@ public class Donor implements Parcelable {
         return imagePath;
     }
 
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment){
+        this.comment = comment;
+    }
+
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public Date getLast_modified() {
+        return last_modified;
+    }
+
+    public void setLast_modified(Date last_modified) {
+        this.last_modified = last_modified;
     }
     public static final Creator<Donor> CREATOR = new Creator<Donor>() {
         /*public Donor createFromParcel(Parcel source) {

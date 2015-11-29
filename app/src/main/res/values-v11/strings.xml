@@ -8,5 +8,6 @@
     <string name="action_send">Send</string>
     <string name="updated_payment_History"> Payment History</string>
     <string name="get_payment">Get Payment</string>
+    <string name="remider">Reminder</string>
 
 </resources>

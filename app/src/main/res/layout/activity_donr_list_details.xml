@@ -5,11 +5,12 @@
     tools:context="com.dhenupa.activity.MainListFragment"
     android:orientation="vertical">
 
-    <SearchView
+    <EditText
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ></SearchView>
+        android:hint="Seach"
+        ></EditText>
     <ListView android:id="@+id/listtest"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
