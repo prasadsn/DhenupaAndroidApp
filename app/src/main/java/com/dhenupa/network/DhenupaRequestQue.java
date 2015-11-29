@@ -14,7 +14,7 @@ import com.android.volley.toolbox.Volley;
  */
 public class DhenupaRequestQue {
 
-    public static final String SERVER_URL = "http://192.168.0.102:8080/DhenupaAdmin";
+    public static final String SERVER_URL = "http://192.168.0.103:8080/DhenupaAdmin";
     //public static final String SERVER_URL = "http://admin-dhenupa.rhcloud.com";
     private RequestQueue mRequestQueue;
 

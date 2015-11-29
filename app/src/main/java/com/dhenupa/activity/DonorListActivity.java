@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,6 +65,7 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
         SQLiteDatabase database = db.getReadableDatabase();
         String SqlQuery = "SELECT * FROM DonorList";
         Cursor cursor = database.rawQuery(SqlQuery, null);
+        Log.d("Size", cursor.getCount()+ "");
         return cursor;
     }
 
@@ -78,7 +80,9 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        CustomListAdapter.ViewHolder viewHolder = (CustomListAdapter.ViewHolder) view.getTag();
         Intent intent = new Intent(DonorListActivity.this, ActivityDonerDetailsLayout.class);
+        intent.putExtra("userid", viewHolder.userId);
         startActivity(intent);
 
     }

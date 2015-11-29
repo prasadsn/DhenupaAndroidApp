@@ -5,4 +5,9 @@
         android:orderInCategory="100" android:showAsAction="never" />
     <item android:id="@+id/action_edit" android:title="@string/action_edit"
         android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/updated_payment" android:title="@string/updated_payment_History"
+        android:orderInCategory="100" android:showAsAction="never"
+        ></item>
+    <item android:id="@+id/getpament" android:title="@string/get_payment"
+        android:orderInCategory="100" android:showAsAction="never"></item>
 </menu>

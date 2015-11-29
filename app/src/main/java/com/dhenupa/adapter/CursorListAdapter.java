@@ -34,7 +34,7 @@ public class CursorListAdapter extends CursorAdapter {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView1);
         TextView name = (TextView) view.findViewById(R.id.nameid);
-        TextView location = (TextView) view.findViewById(R.id.location);
+        TextView location = (TextView) view.findViewById(R.id.addrdata);
         TextView doj = (TextView) view.findViewById(R.id.doj);
 
         String dname = cursor.getString(cursor.getColumnIndexOrThrow("name"));

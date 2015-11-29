@@ -41,7 +41,8 @@ public class CustomListAdapter extends CursorAdapter {
    /* private List<DummyDataObjs> mainDataList = null;
     private ArrayList<DummyDataObjs> arraylist;*/
 
-    static class ViewHolder {
+    public static class ViewHolder {
+        public String userId;
         protected TextView name;
         protected TextView number;
         protected TextView email;
@@ -80,6 +81,7 @@ public class CustomListAdapter extends CursorAdapter {
         holder.number.setText(cursor.getString(cursor.getColumnIndex("address")));
         holder.email.setText(cursor.getString(cursor.getColumnIndex("dob")));
         String userId = cursor.getString(cursor.getColumnIndex("userid"));
+        holder.userId = userId;
         String imgUrl = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=getPic&userid="+ userId;
         //holder.image.setImageUrl(imgUrl, DhenupaRequestQue.getInstance(mContext).getImageLoader());
         //holder.image.setImageBitmap(getBitmapFromURL(imgUrl));

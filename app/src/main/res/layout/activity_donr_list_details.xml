@@ -5,26 +5,6 @@
     tools:context="com.dhenupa.activity.MainListFragment"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <Button
-            android:id="@+id/paymenthistory"
-            android:text="@string/updated_payment_History"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"/>
-        <Button
-            android:id="@+id/getpament"
-            android:text="@string/get_payment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"/>
-    </LinearLayout>
-
     <SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
