@@ -17,9 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
 
-import com.android.volley.toolbox.NetworkImageView;
 import com.dhenupa.adapter.CustomListAdapter;
 import com.dhenupa.model.db.DatabaseHelper;
 import com.dhenupa.service.SyncService;
@@ -31,6 +29,7 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     private ListView listView;
     private CustomListAdapter adapter;
     private EditText search;
+    private SyncBroadcastReceiver reciever;
     String query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +104,9 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     }
 
     private void initSync(){
+        reciever = new SyncBroadcastReceiver();
         IntentFilter filter = new IntentFilter(ACTION_SYNC_COMPLETED);
-        registerReceiver(new SyncBroadcastReceiver(), filter);
+        registerReceiver(reciever, filter);
 
         Intent intent = new Intent(this, SyncService.class);
         startService(intent);
@@ -120,6 +120,12 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
         intent.putExtra("userid", viewHolder.userId);
         startActivity(intent);
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(reciever);
     }
 
     private class SyncBroadcastReceiver extends BroadcastReceiver {

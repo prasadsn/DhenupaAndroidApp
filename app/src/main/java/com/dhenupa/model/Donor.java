@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 //import com.j256.ormlite.field.DatabaseField;
 
 /**
@@ -86,8 +87,12 @@ public class Donor implements Parcelable {
     private String comment;
 
     @DatabaseField
-    @SerializedName("last_modified")
-    private Date last_modified;
+    @SerializedName("lastModified")
+    private String lastModified;
+
+    @DatabaseField
+    @SerializedName("status")
+    private int status;
 
   /*  public String getScriptName(){
         return ScriptName;
@@ -117,7 +122,7 @@ public class Donor implements Parcelable {
         dob = donor.getDob();
         imagePath = donor.getImagePath();
         comment = donor.getComment();
-        last_modified = donor.getLast_modified();
+        lastModified = donor.getLastModified();
     }
 
     @Override
@@ -142,7 +147,7 @@ public class Donor implements Parcelable {
         dest.writeString(dob);
         dest.writeString(imagePath);
         dest.writeString(comment);
-        dest.writeString(String.valueOf(last_modified));
+        dest.writeString(String.valueOf(lastModified));
 
 
 
@@ -283,12 +288,21 @@ public class Donor implements Parcelable {
         this.imagePath = imagePath;
     }
 
-    public Date getLast_modified() {
-        return last_modified;
+    public String getLastModified() {
+        return lastModified;
     }
 
-    public void setLast_modified(Date last_modified) {
-        this.last_modified = last_modified;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
     }
     public static final Creator<Donor> CREATOR = new Creator<Donor>() {
         /*public Donor createFromParcel(Parcel source) {

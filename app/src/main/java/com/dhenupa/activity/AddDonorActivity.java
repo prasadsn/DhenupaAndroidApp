@@ -31,31 +31,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.dhenupa.application.DhenupaApplication;
+import com.dhenupa.model.Donor;
+import com.dhenupa.model.db.DatabaseHelper;
+import com.dhenupa.network.DonorManager;
 import com.dhenupa.network.DhenupaRequestQue;
 
 public class AddDonorActivity extends Activity {
 
+	DatabaseHelper db;
 
 	private ImageView userPic;
 
-	private static final String TAG = MainActivity.class.getName();
-	private static final String COL_REG_DATE = "regDate";
-	private static final String COL_USERID = "userid";
-	private static final String COL_NAME = "name";
-	private static final String COL_ADDRESS = "address";
-	private static final String COL_AREA = "area";
-	private static final String COL_CITY = "city";
-	private static final String COL_CONTACT_NO = "contactNo";
-	private static final String COL_DOB = "dob";
-	private static final String COL_DONATION_TYPE = "donationType";
-	private static final String COL_AMOUNT = "amount";
-	private static final String COL_PHOTO = "photo";
-	private static final String COL_EMAIL = "email";
-	private static final String COL_RASHI = "rashi";
-	private static final String COL_NAKSHATRA = "nakshatra";
-	private static final String COL_GOTHRA = "gotra";
-	private static final String COL_JOB = "job";
-	private static final String COL_COMMENT = "comment";
+	private static final String TAG = AddDonorActivity.class.getName();
 
 	private EditText nameEditText, addrEditText, areaEditText, contactEditText, emailEditText, amountEditText, gotraEditText, jobEditText, commentText;
 
@@ -72,6 +60,7 @@ public class AddDonorActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_donor);
 		cityEditText = (AutoCompleteTextView) findViewById(R.id.cities);
+		db = new DatabaseHelper(this);
 		// Get the string array
 		String[] countries = getResources().getStringArray(R.array.cities);
 		// Create the adapter and set it to the AutoCompleteTextView
@@ -120,27 +109,11 @@ public class AddDonorActivity extends Activity {
 		Log.d(TAG, "bitmapData length = " + bitmapdata.length());
 	}
 
-	private void sendData() {
+	private void sendData(final HashMap<String, String> params) {
 		// String url =
 		// "http://192.168.0.100:8080/DhenupaAdmin/MobileDhenupaServlet?";
 		String url = "http://admin-dhenupa.rhcloud.com//DhenupaAdmin/MobileDhenupaServlet?";
 
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(COL_NAME, nameEditText.getText().toString());
-		params.put(COL_ADDRESS, addrEditText.getText().toString());
-		params.put(COL_AREA, areaEditText.getText().toString());
-		params.put(COL_CITY, cityEditText.getText().toString());
-		params.put(COL_CONTACT_NO, contactEditText.getText().toString());
-		params.put(COL_EMAIL, emailEditText.getText().toString());
-		params.put(COL_REG_DATE, regDatePicker.getYear() + "-" + (regDatePicker.getMonth() + 1) + "-" + regDatePicker.getDayOfMonth());
-		params.put(COL_DOB, celebDatePicker.getYear() + "-" + (celebDatePicker.getMonth() + 1) + "-" + celebDatePicker.getDayOfMonth());
-		params.put(COL_AMOUNT, amountEditText.getText().toString());
-		params.put(COL_DONATION_TYPE, donationTypeSpinner.getSelectedItem().toString());
-		params.put(COL_NAKSHATRA, nakshatraSpinner.getSelectedItem().toString());
-		params.put(COL_RASHI, rashiSpinner.getSelectedItem().toString());
-		params.put(COL_GOTHRA, gotraEditText.getText().toString());
-		params.put(COL_JOB, jobEditText.getText().toString());
-		params.put(COL_COMMENT, commentText.getText().toString());
 
 		if (bitmapdata != null)
 			params.put(COL_PHOTO, bitmapdata);
@@ -151,6 +124,9 @@ public class AddDonorActivity extends Activity {
 				try {
 					Toast.makeText(AddDonorActivity.this, (String) response.get("result"), Toast.LENGTH_LONG).show();
 					VolleyLog.v("Response:%n %s", response.toString(4));
+					String userid = (String) response.get("userid");
+					params.put(COL_USERID, userid);
+					addToDb(params);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -160,6 +136,7 @@ public class AddDonorActivity extends Activity {
 			public void onErrorResponse(VolleyError error) {
 				Toast.makeText(AddDonorActivity.this, error.toString(), Toast.LENGTH_LONG).show();
 				VolleyLog.e("Error: ", error.getMessage());
+				addToDb(params);
 			}
 		});
 		// Add the request to the RequestQueue.
@@ -234,9 +211,33 @@ public class AddDonorActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_submit) {
-			sendData();
+
+			Donor donor = CreateDonor();
+			new DonorManager(donor).addNewDonor();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private Donor CreateDonor(){
+		Donor donor = new Donor();
+		donor.setName(nameEditText.getText().toString());
+		donor.setAddress(addrEditText.getText().toString());
+		donor.setArea(areaEditText.getText().toString());
+		donor.setCity(cityEditText.getText().toString());
+		donor.setContactNumber(contactEditText.getText().toString());
+		donor.setEmailId(emailEditText.getText().toString());
+		donor.setRegisteredDate(regDatePicker.getYear() + "-" + (regDatePicker.getMonth() + 1) + "-" + regDatePicker.getDayOfMonth());
+		donor.setDob(celebDatePicker.getYear() + "-" + (celebDatePicker.getMonth() + 1) + "-" + celebDatePicker.getDayOfMonth());
+		donor.setAmount(new Integer(amountEditText.getText().toString()).intValue());
+		donor.setDonationType(donationTypeSpinner.getSelectedItem().toString());
+		donor.setNakshatra(nakshatraSpinner.getSelectedItem().toString());
+		donor.setRashi(rashiSpinner.getSelectedItem().toString());
+		donor.setGothra(gotraEditText.getText().toString());
+		donor.setJob(jobEditText.getText().toString());
+		donor.setComment(commentText.getText().toString());
+		donor.setStatus(DhenupaApplication.STATUS_DONOR_ADDED);
+
+		return donor;
 	}
 }

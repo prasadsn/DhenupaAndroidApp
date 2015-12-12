@@ -12,6 +12,11 @@ import com.dhenupa.util.SMSUtil;
  */
 public class DhenupaApplication extends Application {
 
+    public static final int STATUS_DONOR_SYCNED = 0;
+    public static final int STATUS_DONOR_ADDED = 1;
+    public static final int STATUS_DONOR_UPDATED = 2;
+    public static final int STATUS_DONOR_DELETED = 3;
+
     @Override
     public void onCreate() {
         super.onCreate();

@@ -3,7 +3,9 @@ package com.dhenupa.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.util.Xml;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -19,6 +21,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -52,11 +56,24 @@ public class SyncService extends IntentService {
     }
 
     private void syncList(){
-        String url = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=list";
+        String url = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=lastModified&lastModified=";
         //String url = DhenupaRequestQue.SERVER_URL + "/DhenupaAdmin/MobileDhenupaServlet?action=list";
         //String url = "http://169.254.49.105:8080/DhenupaAdmin/MobileDhenupaServlet?action=list";
         //String url = "http://192.168.1.10:8080/DhenupaAdmin/MobileDhenupaServlet?";
 
+        String last_modified = null;
+        SQLiteDatabase database = db.getReadableDatabase();
+        //String SqlQuery = "SELECT * FROM Donor where last_modified=(SELECT MAX(last_modified) FROM Donor)";
+        String SqlQuery = "SELECT * FROM Donor ORDER BY lastModified desc limit 1";
+        Cursor cursor = database.rawQuery(SqlQuery, null);
+        if(cursor.moveToFirst())
+            last_modified = cursor.getString(cursor.getColumnIndex("lastModified"));
+
+        try {
+            url = url + URLEncoder.encode(last_modified, Xml.Encoding.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -73,11 +90,13 @@ public class SyncService extends IntentService {
                     }
                     Log.d(LOG_TAG, "" + list.length);
                     VolleyLog.v("Response:%n %s", response.toString(4));
+                    if(list!=null && list.length>0) {
+                        Intent intent = new Intent(DonorListActivity.ACTION_SYNC_COMPLETED);
+                        sendBroadcast(intent);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(DonorListActivity.ACTION_SYNC_COMPLETED);
-                sendBroadcast(intent);
             }
         }, new Response.ErrorListener() {
             @Override
