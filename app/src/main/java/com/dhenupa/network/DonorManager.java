@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.dhenupa.application.DhenupaApplication;
 import com.dhenupa.model.Donor;
 import com.dhenupa.model.db.DatabaseHelper;
 import com.dhenupa.util.Utility;
@@ -46,7 +47,7 @@ public class DonorManager implements Response.Listener<JSONObject>, Response.Err
 
     // String url =
     // "http://192.168.0.100:8080/DhenupaAdmin/MobileDhenupaServlet?";
-    private static final String url = "http://admin-dhenupa.rhcloud.com//DhenupaAdmin/MobileDhenupaServlet?";
+    private static final String url = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?";
 
     public DonorManager(Donor donor, Context context) {
         this.donor = donor;
@@ -63,10 +64,11 @@ public class DonorManager implements Response.Listener<JSONObject>, Response.Err
         if(Utility.isInternetOn(context))
             addToServer(getRequestParams());
         else
-            addNewDonor();
+            addToDb(DhenupaApplication.STATUS_DONOR_ADDED);
     }
 
-    private void addToDB(){
+    private void addToDb(int status){
+        donor.setStatus(status);
         dbHelper.getDonorListDao().create(donor);
     }
     @Override
@@ -74,8 +76,8 @@ public class DonorManager implements Response.Listener<JSONObject>, Response.Err
         try {
             VolleyLog.v("Response:%n %s", response.toString(4));
             String userid = (String) response.get("userid");
-            params.put(COL_USERID, userid);
-            addToDb();
+            donor.setUserid(new Integer(userid).intValue());
+            addToDb(DhenupaApplication.STATUS_DONOR_SYCNED);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -84,7 +86,7 @@ public class DonorManager implements Response.Listener<JSONObject>, Response.Err
     @Override
     public void onErrorResponse(VolleyError error) {
         VolleyLog.e("Error: ", error.getMessage());
-        addToDb();
+        addToDb(DhenupaApplication.STATUS_DONOR_ADDED);
     }
 
     private HashMap<String, String> getRequestParams(){

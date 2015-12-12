@@ -109,55 +109,6 @@ public class AddDonorActivity extends Activity {
 		Log.d(TAG, "bitmapData length = " + bitmapdata.length());
 	}
 
-	private void sendData(final HashMap<String, String> params) {
-		// String url =
-		// "http://192.168.0.100:8080/DhenupaAdmin/MobileDhenupaServlet?";
-		String url = "http://admin-dhenupa.rhcloud.com//DhenupaAdmin/MobileDhenupaServlet?";
-
-
-		if (bitmapdata != null)
-			params.put(COL_PHOTO, bitmapdata);
-
-		JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
-			@Override
-			public void onResponse(JSONObject response) {
-				try {
-					Toast.makeText(AddDonorActivity.this, (String) response.get("result"), Toast.LENGTH_LONG).show();
-					VolleyLog.v("Response:%n %s", response.toString(4));
-					String userid = (String) response.get("userid");
-					params.put(COL_USERID, userid);
-					addToDb(params);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				Toast.makeText(AddDonorActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-				VolleyLog.e("Error: ", error.getMessage());
-				addToDb(params);
-			}
-		});
-		// Add the request to the RequestQueue.
-		DhenupaRequestQue.getInstance(this).getRequestQueue().add(req);
-	}
-
-	public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
-		int width = image.getWidth();
-		int height = image.getHeight();
-
-		float bitmapRatio = (float) width / (float) height;
-		if (bitmapRatio > 0) {
-			width = maxSize;
-			height = (int) (width / bitmapRatio);
-		} else {
-			height = maxSize;
-			width = (int) (height * bitmapRatio);
-		}
-		return Bitmap.createScaledBitmap(image, width, height, true);
-	}
-
 	public Bitmap getResizedBitmap(Bitmap bmpPic, String finalPath) {
 		int MAX_IMAGE_SIZE = 100 * 1024; // max final file size
 		int compressQuality = 104; // quality decreasing by 5 every loop. (start
@@ -213,7 +164,7 @@ public class AddDonorActivity extends Activity {
 		if (id == R.id.action_submit) {
 
 			Donor donor = CreateDonor();
-			new DonorManager(donor).addNewDonor();
+			new DonorManager(donor, this).addNewDonor();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
