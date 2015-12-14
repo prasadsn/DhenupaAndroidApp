@@ -137,7 +137,7 @@
                 android:layout_gravity="bottom"
                 android:layout_weight="1.5"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="number" />
 
             <Spinner
                 android:id="@+id/amount_type"
@@ -214,7 +214,7 @@
             android:text="Job" />
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/address"
@@ -224,7 +224,7 @@
             android:id="@+id/comment_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/comment"
+            android:layout_alignBottom="@+id/comments"
             android:layout_alignLeft="@id/address_label"
             android:text="Comment" />
 

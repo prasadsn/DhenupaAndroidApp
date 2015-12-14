@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.dhenupa.service.OfflineDBSyncService;
 import com.dhenupa.service.SyncService;
 
 /**
@@ -19,8 +20,12 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent intent) {
         if(isOnline(context)) {
             Log.d("Netowk Available ", "Flag No 1");
-            Intent serviceIntent = new Intent(context, SyncService.class);
-            context.startService(serviceIntent);
+
+            Intent syncServiceIntent = new Intent(context, SyncService.class);
+            context.startService(syncServiceIntent);
+
+            Intent offlineDbSyncService = new Intent(context, OfflineDBSyncService.class);
+            context.startService(offlineDbSyncService);
         }
     }
 

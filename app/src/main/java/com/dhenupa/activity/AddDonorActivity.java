@@ -1,17 +1,15 @@
 package com.dhenupa.activity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
-import java.util.HashMap;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -24,18 +22,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.dhenupa.application.DhenupaApplication;
 import com.dhenupa.model.Donor;
 import com.dhenupa.model.db.DatabaseHelper;
 import com.dhenupa.network.DonorManager;
-import com.dhenupa.network.DhenupaRequestQue;
+import com.dhenupa.util.Utility;
 
 public class AddDonorActivity extends Activity {
 
@@ -52,8 +44,7 @@ public class AddDonorActivity extends Activity {
 	private DatePicker regDatePicker, celebDatePicker;
 
 	private AutoCompleteTextView cityEditText;
-
-	private String bitmapdata;
+	private Bitmap bp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +66,7 @@ public class AddDonorActivity extends Activity {
 		amountEditText = (EditText) findViewById(R.id.amount);
 		gotraEditText = (EditText) findViewById(R.id.gotra);
 		jobEditText = (EditText) findViewById(R.id.job);
-		commentText = (EditText) findViewById(R.id.comment);
+		commentText = (EditText) findViewById(R.id.comments);
 
 		donationTypeSpinner = (Spinner) findViewById(R.id.amount_type);
 		nakshatraSpinner = (Spinner) findViewById(R.id.nakshatra);
@@ -101,12 +92,10 @@ public class AddDonorActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode != RESULT_OK)
 			return;
-		Bitmap bp = (Bitmap) data.getExtras().get("data");
+		bp = (Bitmap) data.getExtras().get("data");
 		bp = getResizedBitmap(bp, getExternalFilesDir(null).getAbsolutePath() + "pic.jpg");
 		// bp = getResizedBitmap(bp, 200);
 		userPic.setImageBitmap(bp);
-		bitmapdata = "data:image/jpeg;base64," + encodeTobase64(bp);
-		Log.d(TAG, "bitmapData length = " + bitmapdata.length());
 	}
 
 	public Bitmap getResizedBitmap(Bitmap bmpPic, String finalPath) {
@@ -137,16 +126,6 @@ public class AddDonorActivity extends Activity {
 		return bmpPic;
 	}
 
-	public static String encodeTobase64(Bitmap image) {
-		Bitmap immagex = image;
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		immagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-		byte[] b = baos.toByteArray();
-		String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
-		Log.e("LOOK", imageEncoded);
-		return imageEncoded;
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,12 +141,29 @@ public class AddDonorActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_submit) {
-
 			Donor donor = CreateDonor();
-			new DonorManager(donor, this).addNewDonor();
+			if(bp !=null ){
+				final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
+						+ File.separator + donor.getContactNumber() + "_" + donor.getName() + ".jpg";
+				savePic(imgFileName);
+			}
+			new DonorManager(getApplicationContext()).addNewDonor(donor);
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void savePic(String imgFileName){
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		bp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+		byte[] decodedString = baos.toByteArray();
+		//decodedString = response.getBytes();
+		Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+		if(bitmap != null)
+			Utility.savePic(bitmap, imgFileName);
+
 	}
 
 	private Donor CreateDonor(){
@@ -186,7 +182,7 @@ public class AddDonorActivity extends Activity {
 		donor.setRashi(rashiSpinner.getSelectedItem().toString());
 		donor.setGothra(gotraEditText.getText().toString());
 		donor.setJob(jobEditText.getText().toString());
-		donor.setComment(commentText.getText().toString());
+		donor.setComments(commentText.getText().toString());
 		donor.setStatus(DhenupaApplication.STATUS_DONOR_ADDED);
 
 		return donor;

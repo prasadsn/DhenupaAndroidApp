@@ -59,7 +59,7 @@ fieldName=dob
 fieldName=imagePath
 # --field-end--
 # --field-start--
-fieldName=comment
+fieldName=comments
 # --field-end--
 # --field-start--
 fieldName=lastModified

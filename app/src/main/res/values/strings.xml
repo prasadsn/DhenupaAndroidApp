@@ -12,5 +12,6 @@
     <string name="title_activity_update_payment_history">Payment History</string>
     <string name="title_activity_get_payment">Get Payment</string>
     <string name="title_activity_reminder">Remider</string>
+    <string name="action_delete">Delete</string>
 
 </resources>

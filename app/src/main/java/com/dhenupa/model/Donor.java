@@ -2,12 +2,10 @@ package com.dhenupa.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
-
-import java.sql.Date;
-import java.sql.Timestamp;
 //import com.j256.ormlite.field.DatabaseField;
 
 /**
@@ -83,8 +81,8 @@ public class Donor implements Parcelable {
     private String imagePath;
 
     @DatabaseField
-    @SerializedName("comment")
-    private String comment;
+    @SerializedName("comments")
+    private String comments;
 
     @DatabaseField
     @SerializedName("lastModified")
@@ -121,7 +119,7 @@ public class Donor implements Parcelable {
         registeredDate = donor.getRegisteredDate();
         dob = donor.getDob();
         imagePath = donor.getImagePath();
-        comment = donor.getComment();
+        comments = donor.getComments();
         lastModified = donor.getLastModified();
     }
 
@@ -146,7 +144,7 @@ public class Donor implements Parcelable {
 
         dest.writeString(dob);
         dest.writeString(imagePath);
-        dest.writeString(comment);
+        dest.writeString(comments);
         dest.writeString(String.valueOf(lastModified));
 
 
@@ -167,6 +165,8 @@ public class Donor implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+        if(TextUtils.isEmpty(this.name))
+            this.name = "NO NAME";
     }
 
     public String getAddress() {
@@ -175,6 +175,8 @@ public class Donor implements Parcelable {
 
     public void setAddress(String address) {
         this.address = address;
+        if(TextUtils.isEmpty(this.address))
+            this.address = "NO ADDRESS";
     }
 
     public String getArea() {
@@ -183,6 +185,8 @@ public class Donor implements Parcelable {
 
     public void setArea(String area) {
         this.area = area;
+        if(TextUtils.isEmpty(this.area))
+            this.area = "NO AREA";
     }
 
     public String getCity() {
@@ -191,6 +195,8 @@ public class Donor implements Parcelable {
 
     public void setCity(String city) {
         this.city = city;
+        if(TextUtils.isEmpty(this.city))
+            this.city = "NO CITY";
     }
 
     public String getContactNumber() {
@@ -199,6 +205,8 @@ public class Donor implements Parcelable {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+        if(TextUtils.isEmpty(this.contactNumber))
+            this.contactNumber = "NO CONTACT NUMBER";
     }
 
     public String getDonationType() {
@@ -223,6 +231,8 @@ public class Donor implements Parcelable {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+        if(TextUtils.isEmpty(this.emailId))
+            this.emailId = "NO EMAIL";
     }
 
     public String getRashi() {
@@ -231,6 +241,8 @@ public class Donor implements Parcelable {
 
     public void setRashi(String rashi) {
         this.rashi = rashi;
+        if(TextUtils.isEmpty(this.rashi))
+            this.rashi = "NO RASHI";
     }
 
     public String getNakshatra() {
@@ -239,6 +251,8 @@ public class Donor implements Parcelable {
 
     public void setNakshatra(String nakshatra) {
         this.nakshatra = nakshatra;
+        if(TextUtils.isEmpty(this.nakshatra))
+            this.nakshatra = "NO NAKSHATRA";
     }
 
     public String getGothra() {
@@ -247,6 +261,8 @@ public class Donor implements Parcelable {
 
     public void setGothra(String gothra) {
         this.gothra = gothra;
+        if(TextUtils.isEmpty(this.gothra))
+            this.gothra = "NO GOTHRA";
     }
 
     public String getJob() {
@@ -255,6 +271,8 @@ public class Donor implements Parcelable {
 
     public void setJob(String job) {
         this.job = job;
+        if(TextUtils.isEmpty(this.job))
+            this.job = "NO JOB";
     }
 
     public String getRegisteredDate() {
@@ -277,11 +295,13 @@ public class Donor implements Parcelable {
         return imagePath;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
-    public void setComment(String comment){
-        this.comment = comment;
+    public void setComments(String comments){
+        this.comments = comments;
+        if(TextUtils.isEmpty(this.comments))
+            this.comments = "NO COMMENTS";
     }
 
     public void setImagePath(String imagePath) {

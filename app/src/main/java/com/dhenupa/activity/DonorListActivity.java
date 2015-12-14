@@ -20,6 +20,7 @@ import android.widget.ListView;
 
 import com.dhenupa.adapter.CustomListAdapter;
 import com.dhenupa.model.db.DatabaseHelper;
+import com.dhenupa.network.DonorManager;
 import com.dhenupa.service.SyncService;
 
 public class DonorListActivity extends Activity implements AdapterView.OnItemClickListener  {
@@ -40,6 +41,7 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
         initSync();
         listView = (ListView) findViewById(R.id.listtest);
         search = (EditText) findViewById(R.id.search);
+        reciever = new SyncBroadcastReceiver();
 
         adapter = new CustomListAdapter(this, getCursor(), true);
         listView.setAdapter(adapter);
@@ -64,6 +66,13 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(ACTION_SYNC_COMPLETED);
+        registerReceiver(reciever, filter);
     }
 
     @Override
@@ -104,10 +113,6 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     }
 
     private void initSync(){
-        reciever = new SyncBroadcastReceiver();
-        IntentFilter filter = new IntentFilter(ACTION_SYNC_COMPLETED);
-        registerReceiver(reciever, filter);
-
         Intent intent = new Intent(this, SyncService.class);
         startService(intent);
     }
@@ -117,7 +122,7 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
 
         CustomListAdapter.ViewHolder viewHolder = (CustomListAdapter.ViewHolder) view.getTag();
         Intent intent = new Intent(DonorListActivity.this, ActivityDonerDetailsLayout.class);
-        intent.putExtra("userid", viewHolder.userId);
+        intent.putExtra(DonorManager.COL_ID, viewHolder._id);
         startActivity(intent);
 
     }

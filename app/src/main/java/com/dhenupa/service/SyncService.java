@@ -69,6 +69,7 @@ public class SyncService extends IntentService {
         if(cursor.moveToFirst())
             last_modified = cursor.getString(cursor.getColumnIndex("lastModified"));
 
+        if (last_modified!=null)
         try {
             url = url + URLEncoder.encode(last_modified, Xml.Encoding.UTF_8.name());
         } catch (UnsupportedEncodingException e) {

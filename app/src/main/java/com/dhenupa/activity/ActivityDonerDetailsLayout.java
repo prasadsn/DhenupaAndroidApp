@@ -11,11 +11,14 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dhenupa.application.DhenupaApplication;
 import com.dhenupa.model.Donor;
 import com.dhenupa.model.db.DatabaseHelper;
+import com.dhenupa.network.DonorManager;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ActivityDonerDetailsLayout extends Activity {
@@ -28,8 +31,8 @@ public class ActivityDonerDetailsLayout extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_details_layout);
         db = new DatabaseHelper(this);
-        String userid = getIntent().getStringExtra("userid");
-        ArrayList<Donor> list = (ArrayList<Donor>) db.getDonorListDao().queryForEq("userid", userid);
+        String _id = getIntent().getStringExtra(DonorManager.COL_ID);
+        ArrayList<Donor> list = (ArrayList<Donor>) db.getDonorListDao().queryForEq(DonorManager.COL_ID, _id);
         Donor donor = list.get(0);
 
         name = (TextView) findViewById(R.id.namedate);
@@ -79,7 +82,18 @@ public class ActivityDonerDetailsLayout extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_delete) {
+            String _id = getIntent().getStringExtra(DonorManager.COL_ID);
+            List<Donor> list = db.getDonorListDao().queryForEq(DonorManager.COL_ID, new Integer(_id));
+            Donor donor = list.get(0);
+            if(donor.getStatus() == DhenupaApplication.STATUS_DONOR_ADDED){
+                db.getDonorListDao().delete(donor);
+                finish();
+            } else {
+                donor.setStatus(DhenupaApplication.STATUS_DONOR_DELETED);
+                db.getDonorListDao().update(donor);
+                new DonorManager(getApplicationContext()).deleteDonor(donor.getUserid());
+            }
             return true;
         }
         if(id == R.id.action_edit){

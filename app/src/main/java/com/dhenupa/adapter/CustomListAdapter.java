@@ -18,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dhenupa.activity.R;
 import com.dhenupa.network.DhenupaRequestQue;
+import com.dhenupa.network.DonorManager;
+import com.dhenupa.util.Utility;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -38,10 +40,11 @@ public class CustomListAdapter extends CursorAdapter {
     private ArrayList<DummyDataObjs> arraylist;*/
 
     public static class ViewHolder {
-        public String userId;
+        public String _id;
+        protected String userId;
         protected TextView name;
         protected TextView number;
-        protected TextView email;
+        protected TextView dob;
         protected ImageView image;
     }
     @Override
@@ -55,10 +58,9 @@ public class CustomListAdapter extends CursorAdapter {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View convertView = inflater.inflate(R.layout.donor_list_items, parent, false);
 
-
             holder.name = (TextView) convertView.findViewById(R.id.nameid);
             holder.number = (TextView) convertView.findViewById(R.id.number);
-            holder.email = (TextView) convertView.findViewById(R.id.doj);
+            holder.dob = (TextView) convertView.findViewById(R.id.doj);
             holder.image = (ImageView) convertView.findViewById(R.id.networkImageView);
 
             convertView.setTag(holder);
@@ -73,17 +75,18 @@ public class CustomListAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         final ViewHolder holder = (ViewHolder) view.getTag();
-        holder.name.setText(cursor.getString(cursor.getColumnIndex("name")));
-        holder.number.setText(cursor.getString(cursor.getColumnIndex("address")));
-        holder.email.setText(cursor.getString(cursor.getColumnIndex("dob")));
+        holder.name.setText(cursor.getString(cursor.getColumnIndex(DonorManager.COL_NAME)));
+        holder.number.setText(cursor.getString(cursor.getColumnIndex(DonorManager.COL_CONTACT_NO)));
+        holder.dob.setText(cursor.getString(cursor.getColumnIndex(DonorManager.COL_DOB)));
 
-        String userId = cursor.getString(cursor.getColumnIndex("userid"));
+        String userId = cursor.getString(cursor.getColumnIndex(DonorManager.COL_USERID));
         holder.userId = userId;
+        holder._id = cursor.getString(cursor.getColumnIndex(DonorManager.COL_ID));
         File file = new File(Environment.getExternalStorageDirectory() + File.separator + "Dhenupa");
         if(!file.exists())
             file.mkdir();
         final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
-                + File.separator + userId + "_" + cursor.getString(cursor.getColumnIndex("name")) + ".jpg";
+                + File.separator + cursor.getString(cursor.getColumnIndex("name")) + "_" + cursor.getString(cursor.getColumnIndex("name")) + ".jpg";
         Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
         if(bitmap!=null){
             holder.image.setImageBitmap(bitmap);
@@ -104,7 +107,7 @@ public class CustomListAdapter extends CursorAdapter {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 holder.image.setImageBitmap(bitmap);
                 if(bitmap != null)
-                    savePic(bitmap, imgFileName);
+                    Utility.savePic(bitmap, imgFileName);
             }
         }, new Response.ErrorListener(){
             @Override
@@ -115,23 +118,5 @@ public class CustomListAdapter extends CursorAdapter {
         DhenupaRequestQue.getInstance(context).getRequestQueue().add(request);
     }
 
-    private void savePic(Bitmap _bitmapScaled, String filename){
-        try {
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            _bitmapScaled.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-
-            //you can create a new file name "test.jpg" in sdcard folder.
-            File f = new File(filename);
-                f.createNewFile();
-            //write the bytes in file
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-
-            // remember close de FileOutput
-            fo.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
