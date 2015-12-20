@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,7 @@ public class DonorManager {
     public static final String COL_GOTHRA = "gotra";
     public static final String COL_JOB = "job";
     public static final String COL_COMMENT = "comments";
+    //public static final String COL_LAST_MODIFIED = "lastModified";
     private final Context context;
     private DatabaseHelper dbHelper;
 
@@ -71,6 +73,7 @@ public class DonorManager {
                     Integer userid = (Integer) response.get(COL_USERID);
                     donor.setUserid(userid.intValue());
                     addToDb(donor, DhenupaApplication.STATUS_DONOR_SYCNED);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -118,7 +121,7 @@ public class DonorManager {
 
     private void addToDb(Donor donor,int status){
         donor.setStatus(status);
-        ArrayList<Donor> donorList = (ArrayList<Donor>) dbHelper.getDonorListDao().queryForEq(COL_CONTACT_NO, donor.getContactNumber());
+        ArrayList<Donor> donorList = (ArrayList<Donor>) dbHelper.getDonorListDao().queryForEq("contactNumber", donor.getContactNumber());
         if(donorList !=null && donorList.size()>0)
             dbHelper.getDonorListDao().update(donor);
         else
@@ -145,10 +148,11 @@ public class DonorManager {
 
         final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
                 + File.separator + donor.getContactNumber() + "_" + donor.getName() + ".jpg";
-        Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
-        String bitmapdata = "data:image/jpeg;base64," + encodeTobase64(bitmap);
-        params.put(COL_PHOTO, bitmapdata);
-
+        if(new File(imgFileName).exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
+            String bitmapdata = "data:image/jpeg;base64," + encodeTobase64(bitmap);
+            params.put(COL_PHOTO, bitmapdata);
+        }
         return  params;
     }
 

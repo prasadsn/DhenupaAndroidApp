@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
@@ -15,6 +16,8 @@ import com.dhenupa.application.DhenupaApplication;
 import com.dhenupa.model.Donor;
 import com.dhenupa.model.db.DatabaseHelper;
 import com.dhenupa.network.DonorManager;
+import com.dhenupa.network.PaymentManager;
+import com.dhenupa.util.SMSUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,29 +28,31 @@ public class ActivityDonerDetailsLayout extends Activity {
     DatabaseHelper db;
     TextView name, address, area, city, contact_no, celeb_dt, amount, nandr, gotra;
     ImageView pic;
+    private String _id;
+    private Donor donor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_details_layout);
         db = new DatabaseHelper(this);
-        String _id = getIntent().getStringExtra(DonorManager.COL_ID);
+        _id = getIntent().getStringExtra(DonorManager.COL_ID);
         ArrayList<Donor> list = (ArrayList<Donor>) db.getDonorListDao().queryForEq(DonorManager.COL_ID, _id);
-        Donor donor = list.get(0);
+        donor = list.get(0);
 
         name = (TextView) findViewById(R.id.namedate);
         address = (TextView) findViewById(R.id.addrdata);
         area = (TextView) findViewById(R.id.areadata);
         city = (TextView) findViewById(R.id.citydata);
         contact_no = (TextView) findViewById(R.id.phnum);
-        celeb_dt = (TextView) findViewById(R.id.celeb_date);
+        celeb_dt = (TextView) findViewById(R.id.celb_dt);
         amount = (TextView) findViewById(R.id.rupees);
         nandr = (TextView) findViewById(R.id.nakshgo);
         gotra = (TextView) findViewById(R.id.gotradata);
         pic = (ImageView) findViewById(R.id.image);
 
         final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
-                + File.separator + donor.getUserid() + "_" + donor.getName() + ".jpg";
+                + File.separator + donor.getContactNumber() + "_" + donor.getName() + ".jpg";
         Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
         if(bitmap!=null){
             pic.setImageBitmap(bitmap);
@@ -93,25 +98,31 @@ public class ActivityDonerDetailsLayout extends Activity {
                 donor.setStatus(DhenupaApplication.STATUS_DONOR_DELETED);
                 db.getDonorListDao().update(donor);
                 new DonorManager(getApplicationContext()).deleteDonor(donor.getUserid());
+                finish();
             }
             return true;
         }
         if(id == R.id.action_edit){
 
         }
-        if(id == R.id.updated_payment){
-            Intent intent = new Intent(ActivityDonerDetailsLayout.this, UpdatePaymentHistoryActivity.class);
+        if(id == R.id.getpament){
+            Intent intent = new Intent(ActivityDonerDetailsLayout.this, PaymentHistoryActivity.class);
+            intent.putExtra(PaymentManager.COL_DONOERID, _id);
             startActivity(intent);
         }
-        if(id == R.id.getpament){
-            Intent intent = new Intent(ActivityDonerDetailsLayout.this, GetPaymentActivity.class);
+        if(id == R.id.updated_payment){
+            Intent intent = new Intent(ActivityDonerDetailsLayout.this, AddPaymentActivity.class);
+            intent.putExtra(PaymentManager.COL_DONOERID, _id);
             startActivity(intent);
         }
         if(id == R.id.reminder){
-            Intent intent = new Intent(ActivityDonerDetailsLayout.this, ReminderActivity.class);
+            SMSUtil.sendSMS(donor.getContactNumber(), "Greetings! Please donate the accepted amount towards Dhenupa Trust Go Grasa. Thanks, Korlahalli Srikarachar");
+        }
+        if(id == R.id.call){
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse(donor.getContactNumber()));
             startActivity(intent);
         }
-
 
 
         return super.onOptionsItemSelected(item);

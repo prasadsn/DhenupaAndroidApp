@@ -1,6 +1,5 @@
 package com.dhenupa.network;
 
-import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.dhenupa.service.OfflineDBSyncService;
+import com.dhenupa.service.OfflineDonorSyncService;
 import com.dhenupa.service.SyncService;
 
 /**
@@ -24,7 +23,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
             Intent syncServiceIntent = new Intent(context, SyncService.class);
             context.startService(syncServiceIntent);
 
-            Intent offlineDbSyncService = new Intent(context, OfflineDBSyncService.class);
+            Intent offlineDbSyncService = new Intent(context, OfflineDonorSyncService.class);
             context.startService(offlineDbSyncService);
         }
     }

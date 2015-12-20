@@ -6,8 +6,8 @@
     <string name="action_submit">Submit</string>
     <string name="action_add">Add</string>
     <string name="action_send">Send</string>
-    <string name="updated_payment_History"> Payment History</string>
-    <string name="get_payment">Get Payment</string>
+    <string name="updated_payment_History">Update Payment</string>
+    <string name="get_payment">Payment history</string>
     <string name="remider">Reminder</string>
 
 </resources>

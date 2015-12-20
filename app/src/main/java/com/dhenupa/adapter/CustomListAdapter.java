@@ -76,7 +76,7 @@ public class CustomListAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         final ViewHolder holder = (ViewHolder) view.getTag();
         holder.name.setText(cursor.getString(cursor.getColumnIndex(DonorManager.COL_NAME)));
-        holder.number.setText(cursor.getString(cursor.getColumnIndex(DonorManager.COL_CONTACT_NO)));
+        holder.number.setText(cursor.getString(cursor.getColumnIndex("contactNumber")));
         holder.dob.setText(cursor.getString(cursor.getColumnIndex(DonorManager.COL_DOB)));
 
         String userId = cursor.getString(cursor.getColumnIndex(DonorManager.COL_USERID));
@@ -86,7 +86,7 @@ public class CustomListAdapter extends CursorAdapter {
         if(!file.exists())
             file.mkdir();
         final String imgFileName = Environment.getExternalStorageDirectory() + File.separator + "Dhenupa"
-                + File.separator + cursor.getString(cursor.getColumnIndex("name")) + "_" + cursor.getString(cursor.getColumnIndex("name")) + ".jpg";
+                + File.separator + cursor.getString(cursor.getColumnIndex("contactNumber")) + "_" + cursor.getString(cursor.getColumnIndex("name")) + ".jpg";
         Bitmap bitmap = BitmapFactory.decodeFile(imgFileName);
         if(bitmap!=null){
             holder.image.setImageBitmap(bitmap);

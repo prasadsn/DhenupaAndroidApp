@@ -13,5 +13,11 @@
     <string name="title_activity_get_payment">Get Payment</string>
     <string name="title_activity_reminder">Remider</string>
     <string name="action_delete">Delete</string>
+    <string name="payment_mode_cash">Cash</string>
+    <string name="payment_mode_cheque">Cheque</string>
+    <string name="payment_mode_online">Online Payment</string>
+    <string name="title_activity_message_to_all">MessageToAllActivity</string>
+    <string name="call">Call</string>
+    <string name="title_activity_event_broad_cast">Dhenupa</string>
 
 </resources>

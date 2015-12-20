@@ -13,6 +13,10 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class Donor implements Parcelable {
 
+    public int get_Id() {
+        return _Id;
+    }
+
     @DatabaseField(generatedId = true, columnName = "_id")
     public int _Id;
 

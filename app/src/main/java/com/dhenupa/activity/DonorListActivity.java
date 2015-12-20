@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.dhenupa.adapter.CustomListAdapter;
+import com.dhenupa.application.DhenupaApplication;
 import com.dhenupa.model.db.DatabaseHelper;
 import com.dhenupa.network.DonorManager;
 import com.dhenupa.service.SyncService;
@@ -42,10 +43,6 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
         listView = (ListView) findViewById(R.id.listtest);
         search = (EditText) findViewById(R.id.search);
         reciever = new SyncBroadcastReceiver();
-
-        adapter = new CustomListAdapter(this, getCursor(), true);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,6 +68,11 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     @Override
     protected void onStart() {
         super.onStart();
+
+        adapter = new CustomListAdapter(this, getCursor(), true);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+
         IntentFilter filter = new IntentFilter(ACTION_SYNC_COMPLETED);
         registerReceiver(reciever, filter);
     }
@@ -98,7 +100,7 @@ public class DonorListActivity extends Activity implements AdapterView.OnItemCli
     }
     private Cursor getCursor(){
         SQLiteDatabase database = db.getReadableDatabase();
-        String SqlQuery = "SELECT * FROM Donor";
+        String SqlQuery = "SELECT * FROM Donor where status !=" + DhenupaApplication.STATUS_DONOR_DELETED;
         Cursor cursor = database.rawQuery(SqlQuery, null);
         Log.d("Size", cursor.getCount() + "");
         return cursor;

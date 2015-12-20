@@ -56,7 +56,7 @@ public class SyncService extends IntentService {
     }
 
     private void syncList(){
-        String url = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=lastModified&lastModified=";
+        String url = DhenupaRequestQue.SERVER_URL + "/MobileDhenupaServlet?action=syncDonors&lastModified=";
         //String url = DhenupaRequestQue.SERVER_URL + "/DhenupaAdmin/MobileDhenupaServlet?action=list";
         //String url = "http://169.254.49.105:8080/DhenupaAdmin/MobileDhenupaServlet?action=list";
         //String url = "http://192.168.1.10:8080/DhenupaAdmin/MobileDhenupaServlet?";

@@ -1,6 +1,7 @@
 package com.dhenupa.activity;
 
 import android.app.Activity;
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +22,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         findViewById(R.id.show_list).setOnClickListener(this);
         findViewById(R.id.add_new).setOnClickListener(this);
         findViewById(R.id.filter).setOnClickListener(this);
+        findViewById(R.id.send_message_to_all).setOnClickListener(this);
+        findViewById(R.id.celeberations).setOnClickListener(this);
         //MainListFragment mlf = new MainListFragment();
        // getFragmentManager().beginTransaction().add(R.id.mainitemlist, mlf);
     }
@@ -58,13 +61,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 Intent intent1 = new Intent(MainActivity.this, AddDonorActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.send_message_to_all:
+                Intent intent2 = new Intent(MainActivity.this, MessageToAllActivity.class);
+                startActivity(intent2);
+                break;
             case R.id.filter:
-                SMSUtil.sendSMS("9901588277", "Greetings!" +
-                        "\n" +
-                        "Please make monthly payment for Dhenupa organization for the purpose of Go SamrakshaNa" +
-                        "\n" +
-                        "Regards" +
-                        "Sreekarachar korlahalli");
+
+                break;
+            case R.id.celeberations:
+                Intent intent3 = new Intent(MainActivity.this, EventBroadCastActivity.class);
+                startActivity(intent3);
                 break;
         }
     }

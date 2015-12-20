@@ -30,6 +30,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="Send message to all"
+        android:layout_weight="1"
+        android:id="@+id/send_message_to_all"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="Celeberations for this month"
         android:layout_weight="1"
         android:id="@+id/celeberations"
